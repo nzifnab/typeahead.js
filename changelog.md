@@ -5,6 +5,9 @@
 [#187](https://github.com/corejavascript/typeahead.js/pull/187)
 * Don't fire unnecessary autocomplete requests after an autocomplete finishes.
 [lawgical/servemanager#2327](https://github.com/lawgical/servemanager/pull/2327)
+* Don't auto-open the autocompleter when focusing a field. Only when actually
+changing it's value. (Fixes behavior change between twitter typeahead and
+corejavascript/typeahead).
 
 
 ### 1.2.0 September 25, 2017
