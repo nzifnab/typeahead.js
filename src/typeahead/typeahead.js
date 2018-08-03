@@ -59,7 +59,7 @@ var Typeahead = (function() {
     .onSync('datasetCleared', this._onDatasetCleared, this);
 
     // composed event handlers for input
-    onFocused = c(this, 'activate', 'open', '_onFocused');
+    onFocused = c(this, 'activate');
     onBlurred = c(this, 'deactivate', '_onBlurred');
     onEnterKeyed = c(this, 'isActive', 'isOpen', '_onEnterKeyed');
     onTabKeyed = c(this, 'isActive', 'isOpen', '_onTabKeyed');

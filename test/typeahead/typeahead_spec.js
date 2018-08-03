@@ -207,9 +207,9 @@ describe('Typeahead', function() {
         expect(this.view.isActive()).toBe(true);
       });
 
-      it('should open menu', function() {
+      it('should NOT open menu', function() {
         this.input.trigger(eventName);
-        expect(this.menu.open).toHaveBeenCalled();
+        expect(this.menu.open).not.toHaveBeenCalled();
       });
     });
 
@@ -218,15 +218,15 @@ describe('Typeahead', function() {
         this.view.activate();
       });
 
-      it('should open menu', function() {
+      it('should NOT open menu', function() {
         this.input.trigger(eventName);
-        expect(this.menu.open).toHaveBeenCalled();
+        expect(this.menu.open).not.toHaveBeenCalled();
       });
 
-      it('should update menu for query if minLength met', function() {
+      it('should NOT update menu for query if minLength met', function() {
         this.input.getQuery.andReturn('bar');
         this.input.trigger(eventName);
-        expect(this.menu.update).toHaveBeenCalledWith('bar');
+        expect(this.menu.update).not.toHaveBeenCalled();
       });
 
       it('should not update menu for query if minLength not met', function() {
