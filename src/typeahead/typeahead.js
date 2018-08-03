@@ -188,10 +188,6 @@ var Typeahead = (function() {
       if ($selectable = this.menu.getActiveSelectable()) {
         this.select($selectable) && $e.preventDefault();
       }
-
-      else if ($selectable = this.menu.getTopSelectable()) {
-        this.autocomplete($selectable) && $e.preventDefault();
-      }
     },
 
     _onEscKeyed: function onEscKeyed() {

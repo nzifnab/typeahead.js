@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.2.1-nzifnab August 3, 2018
+* Don't select the top autocomplete option when tabbing out of a field
+[#187](https://github.com/corejavascript/typeahead.js/pull/187)
+* Don't fire unnecessary autocomplete requests after an autocomplete finishes.
+[lawgical/servemanager#2327](https://github.com/lawgical/servemanager/pull/2327)
+
+
 ### 1.2.0 September 25, 2017
 * Fix various typos [#137](https://github.com/corejavascript/typeahead.js/pull/137)
 * Add jQuery 3 support [#102](https://github.com/corejavascript/typeahead.js/pull/102)

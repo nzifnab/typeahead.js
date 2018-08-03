@@ -476,7 +476,7 @@ describe('Typeahead', function() {
         expect(payload.preventDefault).not.toHaveBeenCalled();
       });
 
-      it('should autocomplete to top suggestion', function() {
+      it('should NOT autocomplete to top suggestion', function() {
         var $el;
 
         $el = $('<foo>');
@@ -485,19 +485,7 @@ describe('Typeahead', function() {
 
         this.input.trigger(eventName, payload);
 
-        expect(this.view.autocomplete).toHaveBeenCalledWith($el);
-      });
-
-      it('should prevent default behavior of DOM event if autocompletion succeeds', function() {
-        var $el;
-
-        $el = $('<foo>');
-        spyOn(this.view, 'autocomplete').andReturn(true);
-        this.menu.getTopSelectable.andReturn($el);
-
-        this.input.trigger(eventName, payload);
-
-        expect(payload.preventDefault).toHaveBeenCalled();
+        expect(this.view.autocomplete).not.toHaveBeenCalled();
       });
 
       it('should not prevent default behavior of DOM event if autocompletion fails', function() {
@@ -1437,4 +1425,3 @@ describe('Typeahead', function() {
 
   function prevent($e) { $e.preventDefault(); }
 });
-

@@ -1,15 +1,19 @@
 /*!
- * typeahead.js 1.2.0
- * https://github.com/twitter/typeahead.js
- * Copyright 2013-2017 Twitter, Inc. and other contributors; Licensed MIT
+ * typeahead.js 1.2.1-nzifnab
+ * https://github.com/corejavascript/typeahead.js
+ * Copyright 2013-2018 Twitter, Inc. and other contributors; Licensed MIT
+ * NOTE: This is a modified version of the corejavascript typeahead source,
+ * from here: from here: https://github.com/nzifnab/typeahead.js/tree/lawgical
+ * see changelog for details
  */
+
 
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {
         define([ "jquery" ], function(a0) {
             return root["Bloodhound"] = factory(a0);
         });
-    } else if (typeof exports === "object") {
+    } else if (typeof module === "object" && module.exports) {
         module.exports = factory(require("jquery"));
     } else {
         root["Bloodhound"] = factory(root["jQuery"]);
@@ -158,7 +162,7 @@
             noop: function() {}
         };
     }();
-    var VERSION = "1.2.0";
+    var VERSION = "1.2.1";
     var tokenizers = function() {
         "use strict";
         return {
@@ -956,7 +960,7 @@
         define([ "jquery" ], function(a0) {
             return factory(a0);
         });
-    } else if (typeof exports === "object") {
+    } else if (typeof module === "object" && module.exports) {
         module.exports = factory(require("jquery"));
     } else {
         factory(root["jQuery"]);
@@ -2203,8 +2207,6 @@
                 var $selectable;
                 if ($selectable = this.menu.getActiveSelectable()) {
                     this.select($selectable) && $e.preventDefault();
-                } else if ($selectable = this.menu.getTopSelectable()) {
-                    this.autocomplete($selectable) && $e.preventDefault();
                 }
             },
             _onEscKeyed: function onEscKeyed() {
@@ -2315,8 +2317,11 @@
                 }
                 return !this.isOpen();
             },
-            setVal: function setVal(val) {
-                this.input.setQuery(_.toStr(val));
+            setVal: function setVal(val, silent) {
+                if (silent) {
+                    this.menu.empty();
+                }
+                this.input.setQuery(_.toStr(val), silent);
             },
             getVal: function getVal() {
                 return this.input.getQuery();
@@ -2524,6 +2529,20 @@
                 return success;
             },
             val: function val(newVal) {
+                var query;
+                if (!arguments.length) {
+                    ttEach(this.first(), function(t) {
+                        query = t.getVal();
+                    });
+                    return query;
+                } else {
+                    ttEach(this, function(t) {
+                        t.setVal(_.toStr(newVal), true);
+                    });
+                    return this;
+                }
+            },
+            query: function query(newVal) {
                 var query;
                 if (!arguments.length) {
                     ttEach(this.first(), function(t) {
